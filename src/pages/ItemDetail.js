@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Shop() {
+function ItemDetail({ match }) {
   useEffect(() => {
-    fetchItems();
+    fetchItem();
+    console.log(match);
   }, []);
 
   const [items, setItems] = useState({});
 
-  const fetchItems = async () => {
+  const fetchItem = async () => {
     const data = await fetch(
-      "https://fortnite-api.theapinetwork.com/store/get"
+      `https://fortnite-api.theapinetwork.com/item/get?id=${match.params.id}`
     );
     const res = await data.json();
-    setItems(res.data);
+    console.log(res);
   };
 
   return (
     <div>
-      <h1>Shop Page</h1>
-      {items.map(item => {
-        return (
-          <h4 key={item.itemId}>
-            <Link to={`shop/${item.itemId}`}>{item.item.name}</Link>
-          </h4>
-        );
-      })}
+      <h1>ITEM</h1>
     </div>
   );
 }
 
-export default Shop;
+export default ItemDetail;
