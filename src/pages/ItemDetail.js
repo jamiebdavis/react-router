@@ -6,7 +6,7 @@ function Shop() {
     fetchItems();
   }, []);
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState({});
 
   const fetchItems = async () => {
     const data = await fetch(
